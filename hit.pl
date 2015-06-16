@@ -9,6 +9,8 @@ $local_hit=0;
 $local_miss=0;
 $remote_hit=0;
 $remote_miss=0;
+$tpc_hit=0;
+$tcp_miss=0;
 $direct=0;
 $other=0;
 $ims_hit=0;
@@ -36,19 +38,28 @@ while (<>) {
                 $tcp++; }
                 $N++;
 
+#For UDP HIT/MISS
                 if ($L =~ /UDP_HIT/) {
                 $remote_hit++;
                 } if ($L =~ /UDP_MISS/) {
                 $remote_miss++; }
+                
+#Added TCP HIT/MISS
+                if ($L =~ /TCP_HIT/) {
+                $tcp_hit++;
+                } if ($L =~ /TCP_MISS/) {
+                $tcp_miss++; }
 
 #Moved to Direct out of elsif				
 		if ($H =~ /HIER_DIRECT/) {
                 $direct++; } 
 				
-#moved Time out top of this
+#moved Time out of  top of this /mostly in TCP_MISS 
                 if ($H =~ /TIMEOUT_HIER/) {
                 $timeout++; }
-                elsif ($L =~ /IMS_HIT/) {
+                
+                
+                if ($L =~ /IMS_HIT/) {
                         $ims_hit++;
                 } elsif ($L =~ /MEM_HIT/) {
                         $mem_hit++;
