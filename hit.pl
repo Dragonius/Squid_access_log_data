@@ -36,15 +36,15 @@ while (<>) {
                 $tcp++; }
                 $N++;
 
-                if ($H =~ /TIMEOUT_HIER/) {
-                $timeout++; }
-
                 if ($L =~ /UDP_HIT/) {
                 $remote_hit++;
                 } if ($L =~ /UDP_MISS/) {
                 $remote_miss++; }
 
-                if ($L =~ /IMS_HIT/) {
+#moved Time out top of this
+                if ($H =~ /TIMEOUT_HIER/) {
+                $timeout++; }
+                elsif ($L =~ /IMS_HIT/) {
                         $ims_hit++;
                 } elsif ($L =~ /MEM_HIT/) {
                         $mem_hit++;
