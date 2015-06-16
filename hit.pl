@@ -83,7 +83,8 @@ while (<>) {
         printf "REMOTE-MISS %d\n", $remote_miss;
         printf "LOCAL-HIT %% %f\n", 100*$local_hit/$tcp;
         printf "LOCAL-HIT %d\n", $local_hit;
-        printf "LOCAL-MISS %% %f\n", 100*$local_miss/$tcp;
+  #someting wrong Here so i Changed Local miss TCP to N
+        printf "LOCAL-MISS %% %f\n", 100*$local_miss/$N;
         printf "LOCAL-MISS %d\n", $local_miss;
         printf "IMS_HIT %% %f\n", 100*$ims_hit/$tcp;
         printf "IMS_HIT %d\n", $ims_hit;
