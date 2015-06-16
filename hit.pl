@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 
 #use strict;
+use warnings;
 
 #Put all to 0 
 $other=0;
@@ -9,6 +10,8 @@ $local_hit=0;
 $local_miss=0;
 $remote_hit=0;
 $remote_miss=0;
+$tpc_hit=0;
+$tcp_miss=0;
 $direct=0;
 $other=0;
 $ims_hit=0;
@@ -20,7 +23,7 @@ $sibling_hit=0;
 $negative=0;
 $tcp=0;
 $udp=0;
-use warnings;
+
 
 
 while (<>) {
@@ -39,10 +42,17 @@ while (<>) {
                 if ($H =~ /TIMEOUT_HIER/) {
                 $timeout++; }
 
+#For UDP HIT/MISS
                 if ($L =~ /UDP_HIT/) {
                 $remote_hit++;
                 } if ($L =~ /UDP_MISS/) {
                 $remote_miss++; }
+                
+#Added TCP HIT/MISS
+                if ($L =~ /TCP_HIT/) {
+                $tcp_hit++;
+                } if ($L =~ /TCP_MISS/) {
+                $tcp_miss++; }
 
                 if ($L =~ /IMS_HIT/) {
                         $ims_hit++;
