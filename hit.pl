@@ -43,8 +43,7 @@ while (<>) {
 
 #Moved to Direct out of elsif				
 		if ($H =~ /HIER_DIRECT/) {
-                $direct++;
-                } 
+                $direct++; } 
 				
 #moved Time out top of this
                 if ($H =~ /TIMEOUT_HIER/) {
