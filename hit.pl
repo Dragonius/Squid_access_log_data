@@ -46,23 +46,23 @@ while (<>) {
 
                 if ($L =~ /IMS_HIT/) {
                         $ims_hit++;
-                } if ($L =~ /MEM_HIT/) {
+                } elsif ($L =~ /MEM_HIT/) {
                         $mem_hit++;
-                } if ($L =~ /ABORTED/) {
+                } elsif ($L =~ /ABORTED/) {
                         $aborted_hit++;
-                } if ($L =~ /REFRESH_UNMODIFIED/) {
+                } elsif ($L =~ /REFRESH_UNMODIFIED/) {
                         $unmodified++;
-                } if ($L =~ /REFRESH_MODIFIED/) {
+                } elsif ($L =~ /REFRESH_MODIFIED/) {
                         $modified++;
-                } if ($L =~ /NEGATIVE_HIT/) {
+                } elsif ($L =~ /NEGATIVE_HIT/) {
                         $negative++;
-                } if ($H =~ /HIT/) {
+                } elsif ($H =~ /HIT/) {
                         $sibling_hit++;
-                } if ($L =~ /SIBLING_HIT/) {
+                } elsif ($L =~ /SIBLING_HIT/) {
                         $local_hit++;
-                } if ($H =~ /HIER_DIRECT/) {
+                } elsif ($H =~ /HIER_DIRECT/) {
                         $direct++;
-                } if ($L =~ /MISS/) {
+                } elsif ($L =~ /MISS/) {
                         $local_miss++;
                 } else {
                         $other++;
