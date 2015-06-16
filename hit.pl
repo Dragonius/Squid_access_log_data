@@ -91,6 +91,10 @@ while (<>) {
         printf "REMOTE-HIT %d\n", $remote_hit;
         printf "REMOTE-MISS %% %f\n", 100*$remote_miss/$udp;
         printf "REMOTE-MISS %d\n", $remote_miss;
+        printf "TCP-HIT %% %f\n", 100*$tcp_hit/$tcp;
+        printf "TCP-HIT %d\n", $tcp_hit;
+        printf "TCP-MISS %% %f\n", 100*$tcp_miss/$tcp;
+        printf "TCP-MISS %d\n", $tcp_miss;
         printf "LOCAL-HIT %% %f\n", 100*$local_hit/$tcp;
         printf "LOCAL-HIT %d\n", $local_hit;
         printf "LOCAL-MISS %% %f\n", 100*$local_miss/$tcp;
