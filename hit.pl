@@ -28,7 +28,7 @@ while (<>) {
                 @F = split;
                 $L = $F[3];                  # local cache result code
                 $H = $F[8];                  # hierarchy code
-#We want also UDP fot icp and htcp
+#We want also UDP for icp and htcp
 #               next unless ($L =~ /TCP_/);     # skip UDP and errors
                 if ($L =~ /UDP/) {
                 $udp++; }
@@ -46,23 +46,23 @@ while (<>) {
 
                 if ($L =~ /IMS_HIT/) {
                         $ims_hit++;
-                } elsif ($L =~ /MEM_HIT/) {
+                } if ($L =~ /MEM_HIT/) {
                         $mem_hit++;
-                } elsif ($L =~ /ABORTED/) {
+                } if ($L =~ /ABORTED/) {
                         $aborted_hit++;
-                } elsif ($L =~ /REFRESH_UNMODIFIED/) {
+                } if ($L =~ /REFRESH_UNMODIFIED/) {
                         $unmodified++;
-                } elsif ($L =~ /REFRESH_MODIFIED/) {
+                } if ($L =~ /REFRESH_MODIFIED/) {
                         $modified++;
-                } elsif ($L =~ /NEGATIVE_HIT/) {
+                } if ($L =~ /NEGATIVE_HIT/) {
                         $negative++;
-                } elsif ($H =~ /HIT/) {
+                } if ($H =~ /HIT/) {
                         $sibling_hit++;
-                } elsif ($L =~ /SIBLING_HIT/) {
+                } if ($L =~ /SIBLING_HIT/) {
                         $local_hit++;
-                } elsif ($H =~ /HIER_DIRECT/) {
+                } if ($H =~ /HIER_DIRECT/) {
                         $direct++;
-                } elsif ($L =~ /MISS/) {
+                } if ($L =~ /MISS/) {
                         $local_miss++;
                 } else {
                         $other++;
