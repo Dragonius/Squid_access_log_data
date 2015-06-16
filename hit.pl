@@ -104,7 +104,7 @@ while (<>) {
         printf "DIRECT %d\n", $direct;
         printf "OTHER %% %f\n", 100*$other/$tcp;
         printf "OTHER %d\n", $other;
-        printf "ALL_Data %f\n", ($local_hit+$local_miss+$ims_hit+$mem_hit+$unmodified+$modified+$negative+$aborted_hit+$direct+$other+$sibling_hit)/$N*100;
+        printf "ALL_Data %f\n", ($local_hit+$local_miss+$ims_hit+$mem_hit+$unmodified+$modified+$negative+$aborted_hit+$direct+$other+$sibling_hit+$remote_hit+$remote_miss)/$N*100;
         printf "ALL_TCP %f\n", ($local_hit/$tcp+$local_miss/$tcp+$ims_hit/$tcp+$mem_hit/$tcp+$unmodified/$tcp+$modified/$tcp+$negative/$tcp+$aborted_hit/$tcp+$direct/$tcp+$other/$tcp+$sibling_hit/$tcp
 )*100;
         printf "ALL_UDP %f\n", ($remote_hit/$udp+$remote_miss/$udp)*100;
