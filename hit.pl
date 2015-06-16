@@ -42,8 +42,8 @@ while (<>) {
                 $remote_miss++; }
 
 #Moved to Direct out of elsif				
-				sif ($H =~ /HIER_DIRECT/) {
-                        $direct++;
+		if ($H =~ /HIER_DIRECT/) {
+                $direct++;
                 } 
 				
 #moved Time out top of this
