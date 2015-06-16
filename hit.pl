@@ -28,7 +28,7 @@ while (<>) {
                 @F = split;
                 $L = $F[3];                  # local cache result code
                 $H = $F[8];                  # hierarchy code
-#We want also UDP fot icp and htcp
+#We want also UDP for icp and htcp
 #               next unless ($L =~ /TCP_/);     # skip UDP and errors
                 if ($L =~ /UDP/) {
                 $udp++; }
