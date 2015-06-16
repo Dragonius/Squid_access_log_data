@@ -41,6 +41,11 @@ while (<>) {
                 } if ($L =~ /UDP_MISS/) {
                 $remote_miss++; }
 
+#Moved to Direct out of elsif				
+				sif ($H =~ /HIER_DIRECT/) {
+                        $direct++;
+                } 
+				
 #moved Time out top of this
                 if ($H =~ /TIMEOUT_HIER/) {
                 $timeout++; }
@@ -60,8 +65,6 @@ while (<>) {
                         $sibling_hit++;
                 } elsif ($L =~ /SIBLING_HIT/) {
                         $local_hit++;
-                } elsif ($H =~ /HIER_DIRECT/) {
-                        $direct++;
                 } elsif ($L =~ /MISS/) {
                         $local_miss++;
                 } else {
