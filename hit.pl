@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 
 #use strict;
+use warnings;
 
 #Put all to 0 
 $other=0;
@@ -9,7 +10,7 @@ $local_hit=0;
 $local_miss=0;
 $remote_hit=0;
 $remote_miss=0;
-$tpc_hit=0;
+$tcp_hit=0;
 $tcp_miss=0;
 $direct=0;
 $other=0;
@@ -22,7 +23,7 @@ $sibling_hit=0;
 $negative=0;
 $tcp=0;
 $udp=0;
-use warnings;
+
 
 
 while (<>) {
@@ -38,6 +39,9 @@ while (<>) {
                 $tcp++; }
                 $N++;
 
+                if ($H =~ /TIMEOUT_HIER/) {
+                $timeout++; }
+
 #For UDP HIT/MISS
                 if ($L =~ /UDP_HIT/) {
                 $remote_hit++;
@@ -50,15 +54,6 @@ while (<>) {
                 } if ($L =~ /TCP_MISS/) {
                 $tcp_miss++; }
 
-#Moved to Direct out of elsif				
-		if ($H =~ /HIER_DIRECT/) {
-                $direct++; } 
-				
-#moved Time out of  top of this /mostly in TCP_MISS 
-                if ($H =~ /TIMEOUT_HIER/) {
-                $timeout++; }
-                
-                
                 if ($L =~ /IMS_HIT/) {
                         $ims_hit++;
                 } elsif ($L =~ /MEM_HIT/) {
@@ -75,6 +70,8 @@ while (<>) {
                         $sibling_hit++;
                 } elsif ($L =~ /SIBLING_HIT/) {
                         $local_hit++;
+                } elsif ($H =~ /HIER_DIRECT/) {
+                        $direct++;
                 } elsif ($L =~ /MISS/) {
                         $local_miss++;
                 } else {
@@ -94,10 +91,13 @@ while (<>) {
         printf "REMOTE-HIT %d\n", $remote_hit;
         printf "REMOTE-MISS %% %f\n", 100*$remote_miss/$udp;
         printf "REMOTE-MISS %d\n", $remote_miss;
+        printf "TCP-HIT %% %f\n", 100*$tcp_hit/$tcp;
+        printf "TCP-HIT %d\n", $tcp_hit;
+        printf "TCP-MISS %% %f\n", 100*$tcp_miss/$tcp;
+        printf "TCP-MISS %d\n", $tcp_miss;
         printf "LOCAL-HIT %% %f\n", 100*$local_hit/$tcp;
         printf "LOCAL-HIT %d\n", $local_hit;
-  #someting wrong Here so i Changed Local miss TCP to N
-        printf "LOCAL-MISS %% %f\n", 100*$local_miss/$N;
+        printf "LOCAL-MISS %% %f\n", 100*$local_miss/$tcp;
         printf "LOCAL-MISS %d\n", $local_miss;
         printf "IMS_HIT %% %f\n", 100*$ims_hit/$tcp;
         printf "IMS_HIT %d\n", $ims_hit;
@@ -117,6 +117,5 @@ while (<>) {
         printf "DIRECT %d\n", $direct;
         printf "OTHER %% %f\n", 100*$other/$tcp;
         printf "OTHER %d\n", $other;
-        printf "ALL_Data %f\n", ($local_hit+$local_miss+$ims_hit+$mem_hit+$unmodified+$modified+$negative+$aborted_hit+$direct+$other+$sibling_hit+$remote_hit+$remote_miss)/$N*100;
-        printf "ALL_TCP %f\n", ($local_hit+$local_miss+$ims_hit+$mem_hit+$unmodified+$modified+$negative+$aborted_hit+$direct+$other+$sibling_hit)/$tcp*100;
+        printf "ALL_TCP %f\n", ($local_hit+$local_miss+$ims_hit+$mem_hit+$unmodified+$modified+$negative+$aborted_hit+$direct+$other+$sibling_hit)/$N*100;
         printf "ALL_UDP %f\n", ($remote_hit/$udp+$remote_miss/$udp)*100;
