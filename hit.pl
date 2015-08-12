@@ -48,6 +48,8 @@ while (<>) {
                 } if ($L =~ /UDP_MISS/) {
                 $remote_miss++; }
                 
+#$L 3 Poikki
+#$H 8 Leikkaus  ( yleensä Tcp tai Udp vastaus Yleensä Sibling tai onnistunut haku) 
 #Added TCP HIT/MISS
                 if ($L =~ /TCP_HIT/) {
                 $tcp_hit++;
