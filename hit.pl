@@ -3,7 +3,7 @@
 #use strict;
 use warnings;
 
-#Put all to 0 
+#Put all to 0
 $other=0;
 $timeout=0;
 $local_hit=0;
@@ -47,7 +47,7 @@ while (<>) {
                 $remote_hit++;
                 } if ($L =~ /UDP_MISS/) {
                 $remote_miss++; }
-                
+
 #Added TCP HIT/MISS
                 if ($L =~ /TCP_HIT/) {
                 $tcp_hit++;
@@ -78,7 +78,7 @@ while (<>) {
                         $other++;
                 }
         }
-        
+
 #if log files empty then tcp and udp is 1
         if ($tcp == 0) { $tcp=1};
         if ($udp == 0) { $udp=1};
