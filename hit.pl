@@ -3,7 +3,7 @@
 #use strict;
 use warnings;
 
-#Put all to 0 
+#Put all to 0
 $other=0;
 $timeout=0;
 $local_hit=0;
@@ -56,6 +56,12 @@ while (<>) {
                 } if ($L =~ /TCP_MISS/) {
                 $tcp_miss++; }
 
+#Added TCP HIT/MISS
+                if ($L =~ /TCP_HIT/) {
+                $tcp_hit++;
+                } if ($L =~ /TCP_MISS/) {
+                $tcp_miss++; }
+
                 if ($L =~ /IMS_HIT/) {
                         $ims_hit++;
                 } elsif ($L =~ /MEM_HIT/) {
@@ -80,7 +86,7 @@ while (<>) {
                         $other++;
                 }
         }
-        
+
 #if log files empty then tcp and udp is 1
         if ($tcp == 0) { $tcp=1};
         if ($udp == 0) { $udp=1};
