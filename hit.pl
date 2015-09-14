@@ -74,15 +74,21 @@ while (<>) {
                         $modified++;
                 } elsif ($L =~ /NEGATIVE_HIT/) {
                         $negative++;
-                } elsif ($H =~ /HIT/) {
+                } 
+  #Sibling hit here. Must do more code so we want know it is a upd od tcp hit.
+                  elsif ($H =~ /HIT/) {
                         $sibling_hit++;
-                } elsif ($L =~ /SIBLING_HIT/) {
+                }
+  #Why we add localhit if we have sibling hit?
+                  elsif ($L =~ /SIBLING_HIT/) {
                         $local_hit++;
                 } elsif ($H =~ /HIER_DIRECT/) {
                         $direct++;
                 } elsif ($L =~ /MISS/) {
                         $local_miss++;
-                } else {
+                } 
+  #We need all others here for better hit accusary
+                        else {
                         $other++;
                 }
         }
@@ -125,5 +131,6 @@ while (<>) {
         printf "DIRECT %d\n", $direct;
         printf "OTHER %% %f\n", 100*$other/$tcp;
         printf "OTHER %d\n", $other;
+  #Here maybe problem to count hit on all tcp and udp plus other?
         printf "ALL_TCP %f\n", ($local_hit+$local_miss+$ims_hit+$mem_hit+$unmodified+$modified+$negative+$aborted_hit+$direct+$other+$sibling_hit)/$N*100;
         printf "ALL_UDP %f\n", ($remote_hit/$udp+$remote_miss/$udp)*100;
