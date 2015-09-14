@@ -1,5 +1,6 @@
 #!/usr/bin/perl
 
+#älä ole tarkka
 #use strict;
 use warnings;
 
@@ -24,21 +25,21 @@ $negative=0;
 $tcp=0;
 $udp=0;
 
-
-
 while (<>) {
                 chop;
                 @F = split;
                 $L = $F[3];                  # local cache result code
                 $H = $F[8];                  # hierarchy code
+                
+#add one per line
+                $N++;
 #We want also UDP for icp and htcp
 #               next unless ($L =~ /TCP_/);     # skip UDP and errors
                 if ($L =~ /UDP/) {
                 $udp++; }
                 if ($L =~ /TCP/) {
                 $tcp++; }
-                $N++;
-
+                
                 if ($H =~ /TIMEOUT_HIER/) {
                 $timeout++; }
 
