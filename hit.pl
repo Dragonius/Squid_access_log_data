@@ -56,12 +56,6 @@ while (<>) {
                 } if ($L =~ /TCP_MISS/) {
                 $tcp_miss++; }
 
-#Added TCP HIT/MISS
-                if ($L =~ /TCP_HIT/) {
-                $tcp_hit++;
-                } if ($L =~ /TCP_MISS/) {
-                $tcp_miss++; }
-
                 if ($L =~ /IMS_HIT/) {
                         $ims_hit++;
                 } elsif ($L =~ /MEM_HIT/) {
