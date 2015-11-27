@@ -105,10 +105,10 @@ while (<>) {
         printf "UDP-REQUESTS %d\n", $udp;
         printf "TIMEOUTS %d\n", $timeout;
         printf "TIMEOUT %% %f\n", 100*$timeout/$N;
-        printf "REMOTE-HIT %% %f\n", 100*$udp_hit/$udp;
-        printf "REMOTE-HIT %d\n", $udp_hit;
-        printf "REMOTE-MISS %% %f\n", 100*$udp_miss/$udp;
-        printf "REMOTE-MISS %d\n", $udp_miss;
+        printf "UDP-HIT %% %f\n", 100*$udp_hit/$udp;
+        printf "UDP-HIT %d\n", $udp_hit;
+        printf "UDP-MISS %% %f\n", 100*$udp_miss/$udp;
+        printf "UDP-MISS %d\n", $udp_miss;
         printf "TCP-HIT %% %f\n", 100*$tcp_hit/$tcp;
         printf "TCP-HIT %d\n", $tcp_hit;
         printf "TCP-MISS %% %f\n", 100*$tcp_miss/$tcp;
