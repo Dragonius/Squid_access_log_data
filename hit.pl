@@ -70,6 +70,8 @@ while (<>) {
                         $negative++;
                 } 
   #Sibling hit here. Must do more code so we want know it is a upd od tcp hit.
+  #time       0 192.168.XX.XX UDP_HIT/000 0 HTCP_TST http://website.com/7.jpg - HIER_NONE/- -
+  #time       2 192.168.XX.XX TCP_HIT/504 5105 GET http://website.com/7.jpg - HIER_NONE/- text/html
                   elsif ($H =~ /HIT/) {
                         $sibling_hit++;
                 }
