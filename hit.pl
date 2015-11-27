@@ -17,6 +17,7 @@ $other=0;
 $ims_hit=0;
 $mem_hit=0;
 $aborted_hit=0;
+$aborted_miss=0;
 $modified=0;
 $unmodified=0;
 $sibling_hit=0;
@@ -44,17 +45,18 @@ while (<>) {
                 $N++;
 
 #For UDP HIT/MISS
-                if ($L =~ /UDP_HIT//) {
+                if ($L =~ /UDP_HIT/) {
                         $udp_hit++;
-                } if ($L =~ /UDP_MISS//) {
+                }
+                if ($L =~ /UDP_MISS/) {
                         $udp_miss++; }
                 
 
 #Added TCP HIT/MISS
-                if ($L =~ /TCP_HIT//) {
+                if ($L =~ /TCP_HIT/) {
                         $tcp_hit++;
                 } 
-                if ($L =~ /TCP_MISS//) {
+                if ($L =~ /TCP_MISS/) {
                         $tcp_miss++; }
 
                 if ($L =~ /IMS_HIT/) {
@@ -64,8 +66,11 @@ while (<>) {
                         $mem_hit++;
                 }
 #Must add TCP_HIT_ABORTED , TCP_MISS_ABORTED
-                if ($L =~ /ABORTED/) {
+                if ($L =~ /TCP_HIT_ABORTED/) {
                         $aborted_hit++;
+                } 
+                if ($L =~ /TCP_MISS_ABORTED/) {
+                        $aborted_miss++;
                 } 
                 if ($L =~ /REFRESH_UNMODIFIED/) {
                         $unmodified++;
@@ -127,6 +132,8 @@ while (<>) {
         printf "NEGATIVE_HIT %d\n", $negative;
         printf "ABORTED_HIT %% %f\n", 100*$aborted_hit/$tcp;
         printf "ABORTED_HIT %d\n", $aborted_hit;
+        printf "ABORTED_MISS %% %f\n", 100*$aborted_miss/$tcp;
+        printf "ABORTED_MISS %d\n", $aborted_miss;
         printf "SIBLING_HIT %% %f\n", 100*$sibling_hit/$tcp;
         printf "SIBLING_HIT %d\n", $sibling_hit;
         printf "DIRECT %% %f\n", 100*$direct/$tcp;
@@ -134,5 +141,5 @@ while (<>) {
         printf "OTHER %% %f\n", 100*$other/$tcp;
         printf "OTHER %d\n", $other;
   #Here maybe problem to count hit on all tcp and udp plus other?
-        printf "ALL_TCP %f\n", ($local_hit+$local_miss+$ims_hit+$mem_hit+$unmodified+$modified+$negative+$aborted_hit+$direct+$other+$sibling_hit)/$N*100;
+        printf "ALL_TCP %f\n", ($local_hit+$local_miss+$ims_hit+$mem_hit+$unmodified+$modified+$negative+$aborted_hit+$aborted_miss+$direct+$other+$sibling_hit)/$N*100;
         printf "ALL_UDP %f\n", ($udp_hit/$udp+$udp_miss/$udp)*100;
