@@ -58,29 +58,36 @@ while (<>) {
 
                 if ($L =~ /IMS_HIT/) {
                         $ims_hit++;
-                } elsif ($L =~ /MEM_HIT/) {
+                } 
+                if ($L =~ /MEM_HIT/) {
                         $mem_hit++;
-                } elsif ($L =~ /ABORTED/) {
+                } 
+                if ($L =~ /ABORTED/) {
                         $aborted_hit++;
-                } elsif ($L =~ /REFRESH_UNMODIFIED/) {
+                } 
+                if ($L =~ /REFRESH_UNMODIFIED/) {
                         $unmodified++;
-                } elsif ($L =~ /REFRESH_MODIFIED/) {
+                } 
+                if ($L =~ /REFRESH_MODIFIED/) {
                         $modified++;
-                } elsif ($L =~ /NEGATIVE_HIT/) {
+                } 
+                if ($L =~ /NEGATIVE_HIT/) {
                         $negative++;
                 } 
   #Sibling hit here. Must do more code so we want know it is a upd od tcp hit.
   #time       0 192.168.XX.XX UDP_HIT/000 0 HTCP_TST http://website.com/7.jpg - HIER_NONE/- -
   #time       2 192.168.XX.XX TCP_HIT/504 5105 GET http://website.com/7.jpg - HIER_NONE/- text/html
-                  elsif ($H =~ /HIT/) {
+                  if ($H =~ /HIT/) {
                         $sibling_hit++;
                 }
   #Why we add localhit if we have sibling hit?
-                  elsif ($L =~ /SIBLING_HIT/) {
+                  if ($L =~ /SIBLING_HIT/) {
                         $local_hit++;
-                } elsif ($H =~ /HIER_DIRECT/) {
+                } 
+                if ($H =~ /HIER_DIRECT/) {
                         $direct++;
-                } elsif ($L =~ /MISS/) {
+                } 
+                if ($L =~ /MISS/) {
                         $local_miss++;
                 } 
   #We need all others here for better hit accusary
