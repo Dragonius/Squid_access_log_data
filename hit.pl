@@ -44,17 +44,17 @@ while (<>) {
                 $N++;
 
 #For UDP HIT/MISS
-                if ($L =~ /UDP_HIT/) {
+                if ($L =~ /UDP_HIT//) {
                         $udp_hit++;
-                } if ($L =~ /UDP_MISS/) {
+                } if ($L =~ /UDP_MISS//) {
                         $udp_miss++; }
                 
 
 #Added TCP HIT/MISS
-                if ($L =~ /TCP_HIT/) {
+                if ($L =~ /TCP_HIT//) {
                         $tcp_hit++;
                 } 
-                if ($L =~ /TCP_MISS/) {
+                if ($L =~ /TCP_MISS//) {
                         $tcp_miss++; }
 
                 if ($L =~ /IMS_HIT/) {
@@ -62,7 +62,8 @@ while (<>) {
                 } 
                 if ($L =~ /MEM_HIT/) {
                         $mem_hit++;
-                } 
+                }
+#Must add TCP_HIT_ABORTED , TCP_MISS_ABORTED
                 if ($L =~ /ABORTED/) {
                         $aborted_hit++;
                 } 
@@ -88,9 +89,6 @@ while (<>) {
                 if ($H =~ /TIMEOUT_HIER/) {
                         $timeout++; 
                 }
-#               if ($L =~ /MISS/) {
-#                        $local_miss++;
-#                } 
   #We need all others here for better hit accusary
                         else {
                         $other++;
