@@ -88,9 +88,9 @@ while (<>) {
                 if ($H =~ /TIMEOUT_HIER/) {
                         $timeout++; 
                 }
-#               if ($L =~ /MISS/) {
-#                        $local_miss++;
-#                } 
+               if ($L =~ /MISS/) {
+                        $local_miss++;
+                } 
   #We need all others here for better hit accusary
                         else {
                         $other++;
