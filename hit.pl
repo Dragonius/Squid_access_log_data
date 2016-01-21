@@ -146,8 +146,9 @@ while (<>) {
         printf "DIRECT %d\n", $direct;
         printf "TIMEOUTS %% %f\n", 100*$timeout/$tcp;
         printf "TIMEOUTS %d\n", $timeout;
-        printf "OTHER %% %f\n", 100*$other/$tcp;
+        printf "OTHER %% %f\n", 100*$other/$N;
         printf "OTHER %d\n", $other;
   #Here maybe problem to count hit on all tcp and udp plus other?
-        printf "ALL_TCP %f\n", ($local_hit+$local_miss+$ims_hit+$mem_hit+$unmodified+$modified+$negative+$aborted_hit+$aborted_miss+$direct+$other+$sibling_hit)/$tcp*100;
+        printf "ALL_TCP %f\n", ($local_hit+$local_miss+$ims_hit+$mem_hit+$unmodified+$modified+$negative+$aborted_hit+$aborted_miss+$direct+$other+$sibling_hit)/$N*100;
+        printf "ALL_TCP %f\n", ($local_hit+$local_miss+$ims_hit+$mem_hit+$unmodified+$modified+$negative+$aborted_hit+$aborted_miss+$direct)/$tcp*100;
         printf "ALL_UDP %f\n", ($udp_hit/$udp+$udp_miss/$udp)*100;
