@@ -76,10 +76,10 @@ while (<>) {
 
 # Is it Refresh or not
                 elsif ($L =~ /REFRESH_UNMODelsifIED/) {
-                        $unmodelsified++;
+                        $unmodifiedd++;
                 } 
                 elsif ($L =~ /REFRESH_MODelsifIED/) {
-                        $modelsified++;
+                        $modified++;
                 }
  
 #Negative HIT
