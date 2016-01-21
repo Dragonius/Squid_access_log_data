@@ -117,6 +117,8 @@ while (<>) {
         printf "NEGATIVE_HIT %d\n", $negative;
         printf "ABORTED_HIT %% %f\n", 100*$aborted_hit/$tcp;
         printf "ABORTED_HIT %d\n", $aborted_hit;
+        printf "ABORTED_MISS %% %f\n", 100*$aborted_miss/$tcp;
+        printf "ABORTED_HIT %d\n", $aborted_miss;
         printf "SIBLING_HIT %% %f\n", 100*$sibling_hit/$tcp;
         printf "SIBLING_HIT %d\n", $sibling_hit;
         printf "DIRECT %% %f\n", 100*$direct/$tcp;
