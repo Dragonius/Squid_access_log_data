@@ -18,6 +18,7 @@ $other=0;
 $ims_hit=0;
 $mem_hit=0;
 $aborted_hit=0;
+$aborted_miss=0;
 $modified=0;
 $unmodified=0;
 $sibling_hit=0;
@@ -60,9 +61,11 @@ while (<>) {
                 if ($L =~ /IMS_HIT/) {
                         $ims_hit++;
                 } elsif ($L =~ /MEM_HIT/) {
-                        $mem_hit++;
-                } elsif ($L =~ /ABORTED/) {
+                        $mem_hit++; 
+                } elsif ($L =~ /TCP_HIT_ABORTED/) {
                         $aborted_hit++;
+                } elsif ($L =~ /TCP_MISS_ABORTED/) {
+                        $aborted_miss++;
                 } elsif ($L =~ /REFRESH_UNMODIFIED/) {
                         $unmodified++;
                 } elsif ($L =~ /REFRESH_MODIFIED/) {
