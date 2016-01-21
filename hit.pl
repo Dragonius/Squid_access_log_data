@@ -59,50 +59,50 @@ while (<>) {
                 if ($L =~ /TCP_MISS/) {
                         $tcp_miss++; }
 
-                if ($L =~ /IMS_HIT/) {
+                elsif ($L =~ /IMS_HIT/) {
                         $ims_hit++;
                 } 
-                if ($L =~ /MEM_HIT/) {
+                elsif ($L =~ /MEM_HIT/) {
                         $mem_hit++;
                 }
                 
 #Must add TCP_HIT_ABORTED , TCP_MISS_ABORTED
-                if ($L =~ /TCP_HIT_ABORTED/) {
+                elsif ($L =~ /TCP_HIT_ABORTED/) {
                         $aborted_hit++;
                 } 
-                if ($L =~ /TCP_MISS_ABORTED/) {
+                elsif ($L =~ /TCP_MISS_ABORTED/) {
                         $aborted_miss++;
                 } 
 
 # Is it Refresh or not
-                if ($L =~ /REFRESH_UNMODIFIED/) {
-                        $unmodified++;
+                elsif ($L =~ /REFRESH_UNMODelsifIED/) {
+                        $unmodelsified++;
                 } 
-                if ($L =~ /REFRESH_MODIFIED/) {
-                        $modified++;
+                elsif ($L =~ /REFRESH_MODelsifIED/) {
+                        $modelsified++;
                 }
  
 #Negative HIT
-                if ($L =~ /NEGATIVE_HIT/) {
+                elsif ($L =~ /NEGATIVE_HIT/) {
                         $negative++;
                 } 
   #Sibling hit here. Must do more code so we want know it is a upd or tcp hit.
   #time       0 192.168.XX.XX UDP_HIT/000 0 HTCP_TST http://website.com/7.jpg - HIER_NONE/- -
   #time       2 192.168.XX.XX TCP_HIT/504 5105 GET http://website.com/7.jpg - HIER_NONE/- text/html
-                if ($H =~ /SIBLING_HIT/) {
+                elsif ($H =~ /SIBLING_HIT/) {
                         $sibling_hit++;
                 }
 
 #Hier Return Code
-                if ($H =~ /HIER_DIRECT/) {
+                elsif ($H =~ /HIER_DIRECT/) {
                         $direct++;
                 }
-                if ($H =~ /TIMEOUT_HIER/) {
+                elsif ($H =~ /TIMEOUT_HIER/) {
                         $timeout++; 
                 }
   
   #We need all others here for better hit accusary
-                        else {
+                else {
                         $other++;
                 }
         }
