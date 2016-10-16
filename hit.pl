@@ -1,5 +1,6 @@
 #!/usr/bin/perl
 
+#älä ole tarkka
 #use strict;
 use warnings;
 
@@ -25,84 +26,61 @@ $negative=0;
 $tcp=0;
 $udp=0;
 
-
-
 while (<>) {
                 chop;
                 @F = split;
                 $L = $F[3];                  # local cache result code
                 $H = $F[8];                  # hierarchy code
-
-#$L 3 Poikki 3  ( yleensä tcp_hit/miss udp_hit/miss) 
-#$H 8 Leikkaus  ( yleensä Tcp tai Udp vastaus Yleensä Sibling tai onnistunut haku) 
-
-#Count all Lines
+                
+#add one per line
                 $N++;
-
 #We want also UDP for icp and htcp
+#               next unless ($L =~ /TCP_/);     # skip UDP and errors
                 if ($L =~ /UDP/) {
                 $udp++; }
                 if ($L =~ /TCP/) {
                 $tcp++; }
+                
+                if ($H =~ /TIMEOUT_HIER/) {
+                $timeout++; }
 
 #For UDP HIT/MISS
                 if ($L =~ /UDP_HIT/) {
-                        $udp_hit++;
-                }
-                if ($L =~ /UDP_MISS/) {
-                        $udp_miss++; }
-
+                $udp_hit++;
+                } if ($L =~ /UDP_MISS/) {
+                $udp_miss++; }
+                
+#$L 3 Poikki
+#$H 8 Leikkaus  ( yleensä Tcp tai Udp vastaus Yleensä Sibling tai onnistunut haku) 
 #Added TCP HIT/MISS
                 if ($L =~ /TCP_HIT/) {
-                        $tcp_hit++;
-                } 
-                if ($L =~ /TCP_MISS/) {
-                        $tcp_miss++; }
+                $tcp_hit++;
+                } if ($L =~ /TCP_MISS/) {
+                $tcp_miss++; }
 
-                elsif ($L =~ /IMS_HIT/) {
+                if ($L =~ /IMS_HIT/) {
                         $ims_hit++;
-                } 
-                elsif ($L =~ /MEM_HIT/) {
-                        $mem_hit++;
-                }
-                
-#Must add TCP_HIT_ABORTED , TCP_MISS_ABORTED
-                elsif ($L =~ /TCP_HIT_ABORTED/) {
+                } if ($L =~ /MEM_HIT/) {
+                        $mem_hit++; 
+                } if ($L =~ /TCP_HIT_ABORTED/) {
                         $aborted_hit++;
-                } 
-                elsif ($L =~ /TCP_MISS_ABORTED/) {
+                } if ($L =~ /TCP_MISS_ABORTED/) {
                         $aborted_miss++;
-                } 
-
-# Is it Refresh or not
-                elsif ($L =~ /REFRESH_UNMODelsifIED/) {
-                        $unmodifiedd++;
-                } 
-                elsif ($L =~ /REFRESH_MODelsifIED/) {
+                } if ($L =~ /REFRESH_UNMODIFIED/) {
+                        $unmodified++;
+                } if ($L =~ /REFRESH_MODIFIED/) {
                         $modified++;
-                }
- 
-#Negative HIT
-                elsif ($L =~ /NEGATIVE_HIT/) {
+                } if ($L =~ /NEGATIVE_HIT/) {
                         $negative++;
-                } 
-  #Sibling hit here. Must do more code so we want know it is a upd or tcp hit.
-  #time       0 192.168.XX.XX UDP_HIT/000 0 HTCP_TST http://website.com/7.jpg - HIER_NONE/- -
-  #time       2 192.168.XX.XX TCP_HIT/504 5105 GET http://website.com/7.jpg - HIER_NONE/- text/html
-                elsif ($H =~ /SIBLING_HIT/) {
+                } if ($H =~ /HIT/) {
                         $sibling_hit++;
-                }
-
-#Hier Return Code
-                elsif ($H =~ /HIER_DIRECT/) {
+                } if ($L =~ /SIBLING_HIT/) {
+                        $local_hit++;
+                } if ($H =~ /HIER_DIRECT/) {
                         $direct++;
-                }
-                elsif ($H =~ /TIMEOUT_HIER/) {
-                        $timeout++; 
-                }
-  
-  #We need all others here for better hit accusary
-                else {
+                } if ($L =~ /MISS/) {
+                        $local_miss++;
+                } else {
                         $other++;
                 }
         }
@@ -113,11 +91,12 @@ while (<>) {
         printf "ALL-REQUESTS %d\n", $N;
         printf "TCP-REQUESTS %d\n", $tcp;
         printf "UDP-REQUESTS %d\n", $udp;
+        printf "TIMEOUTS %d\n", $timeout;
         printf "TIMEOUT %% %f\n", 100*$timeout/$N;
-        printf "UDP-HIT %% %f\n", 100*$udp_hit/$udp;
-        printf "UDP-HIT %d\n", $udp_hit;
-        printf "UDP-MISS %% %f\n", 100*$udp_miss/$udp;
-        printf "UDP-MISS %d\n", $udp_miss;
+        printf "REMOTE-HIT %% %f\n", 100*$udp_hit/$udp;
+        printf "REMOTE-HIT %d\n", $udp_hit;
+        printf "REMOTE-MISS %% %f\n", 100*$udp_miss/$udp;
+        printf "REMOTE-MISS %d\n", $udp_miss;
         printf "TCP-HIT %% %f\n", 100*$tcp_hit/$tcp;
         printf "TCP-HIT %d\n", $tcp_hit;
         printf "TCP-MISS %% %f\n", 100*$tcp_miss/$tcp;
@@ -139,17 +118,13 @@ while (<>) {
         printf "ABORTED_HIT %% %f\n", 100*$aborted_hit/$tcp;
         printf "ABORTED_HIT %d\n", $aborted_hit;
         printf "ABORTED_MISS %% %f\n", 100*$aborted_miss/$tcp;
-        printf "ABORTED_MISS %d\n", $aborted_miss;
+        printf "ABORTED_HIT %d\n", $aborted_miss;
         printf "SIBLING_HIT %% %f\n", 100*$sibling_hit/$tcp;
         printf "SIBLING_HIT %d\n", $sibling_hit;
         printf "DIRECT %% %f\n", 100*$direct/$tcp;
         printf "DIRECT %d\n", $direct;
-        printf "TIMEOUTS %% %f\n", 100*$timeout/$tcp;
-        printf "TIMEOUTS %d\n", $timeout;
-        printf "OTHER %% %f\n", 100*$other/$N;
+        printf "OTHER %% %f\n", 100*$other/$tcp;
         printf "OTHER %d\n", $other;
-  #Here maybe problem to count hit on all tcp and udp plus other?
-        printf "ALL_TCP %f\n", ($local_hit+$local_miss+$ims_hit+$mem_hit+$unmodified+$modified+$negative+$aborted_hit+$aborted_miss+$direct+$other+$sibling_hit)/$N*100;
-        printf "ALL_TCP %f\n", ($local_hit+$local_miss+$ims_hit+$mem_hit+$unmodified+$modified+$negative+$aborted_hit+$aborted_miss+$direct)/$tcp*100;
+        printf "ALL_TCP %f\n", ($local_hit+$local_miss+$ims_hit+$mem_hit+$unmodified+$modified+$negative+$aborted_hit+$direct+$other+$sibling_hit)/$N*100;
         printf "ALL_UDP %f\n", ($udp_hit/$udp+$udp_miss/$udp)*100;
-        printf "Dev 0.1";
+        printf "Version 0.1 16.10.2016";
