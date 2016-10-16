@@ -152,3 +152,4 @@ while (<>) {
         printf "ALL_TCP %f\n", ($local_hit+$local_miss+$ims_hit+$mem_hit+$unmodified+$modified+$negative+$aborted_hit+$aborted_miss+$direct+$other+$sibling_hit)/$N*100;
         printf "ALL_TCP %f\n", ($local_hit+$local_miss+$ims_hit+$mem_hit+$unmodified+$modified+$negative+$aborted_hit+$aborted_miss+$direct)/$tcp*100;
         printf "ALL_UDP %f\n", ($udp_hit/$udp+$udp_miss/$udp)*100;
+        printf "Dev 0.1";
