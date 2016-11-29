@@ -1,46 +1,53 @@
 #!/usr/bin/perl
 
 #älä ole tarkka
-#use strict;
+use strict;
 use warnings;
 
 #Put all to 0
-$other=0;
-$timeout=0;
-$local_hit=0;
-$local_miss=0;
-$udp_hit=0;
-$udp_miss=0;
-$tcp_hit=0;
-$tcp_miss=0;
-$direct=0;
-$other=0;
-$ims_hit=0;
-$mem_hit=0;
-$aborted_hit=0;
-$aborted_miss=0;
-$modified=0;
-$unmodified=0;
-$sibling_hit=0;
-$negative=0;
-$tcp=0;
-$udp=0;
+my $timeout=0;
+my $local_hit=0;
+my $local_miss=0;
+my $udp_hit=0;
+my $udp_miss=0;
+my $tcp_hit=0;
+my $tcp_miss=0;
+my $direct=0;
+my $other=0;
+my $ims_hit=0;
+my $mem_hit=0;
+my $aborted_hit=0;
+my $aborted_miss=0;
+my $modified=0;
+my $unmodified=0;
+my $sibling_hit=0;
+my $negative=0;
+my $tcp=0;
+my $udp=0;
 
+#Cut parsers
+my @F;
+my $F;
+my $L;
+my $H;
+my $N;
+
+#chop Data to pieces
 while (<>) {
                 chop;
-                @F = split;
-                $L = $F[3];                  # local cache result code
-                $H = $F[8];                  # hierarchy code
+                @F = split;                 # Split Access.log data
+                $L = $F[3];                 # local cache result code
+                $H = $F[8];                 # hierarchy code
                 
 #add one per line
                 $N++;
+                
 #We want also UDP for icp and htcp
 #               next unless ($L =~ /TCP_/);     # skip UDP and errors
                 if ($L =~ /UDP/) {
                 $udp++; }
                 if ($L =~ /TCP/) {
                 $tcp++; }
-                
                 if ($H =~ /TIMEOUT_HIER/) {
                 $timeout++; }
 
@@ -58,6 +65,7 @@ while (<>) {
                 } if ($L =~ /TCP_MISS/) {
                 $tcp_miss++; }
 
+#Lot of If
                 if ($L =~ /IMS_HIT/) {
                         $ims_hit++;
                 } elsif ($L =~ /MEM_HIT/) {
@@ -127,4 +135,4 @@ while (<>) {
         printf "OTHER %d\n", $other;
         printf "ALL_TCP %f\n", ($local_hit+$local_miss+$ims_hit+$mem_hit+$unmodified+$modified+$negative+$aborted_hit+$direct+$other+$sibling_hit)/$N*100;
         printf "ALL_UDP %f\n", ($udp_hit/$udp+$udp_miss/$udp)*100;
-        printf "Version 0.11 16.10.2016";
+        printf "Version 0.12 29.11.2016";
