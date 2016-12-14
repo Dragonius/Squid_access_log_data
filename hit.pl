@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-#älä ole tarkka
+#ole tarkka
 use strict;
 use warnings;
 
