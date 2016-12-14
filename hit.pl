@@ -135,4 +135,4 @@ while (<>) {
         printf "OTHER %d\n", $other;
         printf "ALL_TCP %f\n", ($local_hit+$local_miss+$ims_hit+$mem_hit+$unmodified+$modified+$negative+$aborted_hit+$direct+$other+$sibling_hit)/$N*100;
         printf "ALL_UDP %f\n", ($udp_hit/$udp+$udp_miss/$udp)*100;
-        printf "Version 0.12 29.11.2016";
+        printf "Version 0.121 14.12.2016\n";
