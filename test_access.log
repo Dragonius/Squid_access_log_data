@@ -1,0 +1,12 @@
+1484141828.942    188 127.0.0.1 TCP_MISS/200 52523 GET http://mato22.fi/gomifrepo/@sthud_a3/addons/sthud.pbo - TIMEOUT_HIER_DIRECT/194.100.36.148 Arma/Sync
+1483921242.993      3 192.168.2.1 TCP_MISS/200 946 GET http://fileserver.zeus-community.net/repo/.a3s/autoconfig - SIBLING_HIT/192.168.2.23 application/octet-stream
+1484142050.778     56 192.168.2.2 TCP_HIT/200 1397 GET http://stackexchange.com/ads/launched-question/js? - HIER_NONE/- text/javascript
+1484142051.778     56 192.168.2.3 NEGATIVE_HIT/200 1397 GET http://stackexchange.com/ads/launched-question/php? - HIER_NONE/- text/javascript
+1484143567.214     28 192.168.2.4 TCP_IMS_HIT/200 5171 GET http://ip-lookup.net/ - HIER_NONE/- text/html
+1484143725.108   5296 192.168.2.5 TCP_HIT_ABORTED/404 10447 GET http://www.oreilly.com/images/oreilly/search_bar_mid.gif - TIMEOUT_HIER_DIRECT/104.76.37.190 text/html
+1484143725.108   5296 192.168.2.6 TCP_MISS_ABORTED/404 10447 GET http://www.oreilly.com/images/oreilly/search_bar_mid.gif - TIMEOUT_HIER_DIRECT/104.76.37.190 text/html
+1484144197.783   4550 192.168.2.7 TCP_REFRESH_MODIFIED/200 14827 GET http://alex.ozo.com/wifi/squidrrd/hitratio.day.png - HIER_DIRECT/79.129.116.252 image/png
+1484142583.572   4740 192.168.2.8 TCP_REFRESH_UNMODIFIED/200 2702 GET http://www.onlamp.com/favicon.ico - HIER_DIRECT/193.229.109.24 image/vnd.microsoft.icon
+1484142516.793      4 192.168.2.9 TCP_MEM_HIT/200 946 GET http://elekslabs.disqus.com/count-data.js? - HIER_NONE/- application/javascript
+1484143341.100      0 192.168.2.10 UDP_HIT/000 0 HTCP_TST http://www.squid-cache.org/Artwork/SN.png - HIER_NONE/- -
+1484143432.954      0 192.168.2.11 UDP_MISS/000 0 HTCP_TST http://www.msftncsi.com/ncsi.txt - HIER_NONE/- -
