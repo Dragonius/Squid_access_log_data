@@ -8,5 +8,5 @@
 1484144197.783   4550 192.168.2.7 TCP_REFRESH_MODIFIED/200 14827 GET http://alex.ozo.com/wifi/squidrrd/hitratio.day.png - HIER_DIRECT/79.129.116.252 image/png
 1484142583.572   4740 192.168.2.8 TCP_REFRESH_UNMODIFIED/200 2702 GET http://www.onlamp.com/favicon.ico - HIER_DIRECT/193.229.109.24 image/vnd.microsoft.icon
 1484142516.793      4 192.168.2.9 TCP_MEM_HIT/200 946 GET http://elekslabs.disqus.com/count-data.js? - HIER_NONE/- application/javascript
-1484143341.100      0 192.168.2.10 UDP_HIT/000 0 HTCP_TST http://www.squid-cache.org/Artwork/SN.png - HIER_NONE/- -
+1484143341.100      0 192.168.2.10 UDP_HIT/000 0 HTCP_TST http://www.squid-cache.org/Artwork/SN.png - SIBLING_HIT/192.168.2.23
 1484143432.954      0 192.168.2.11 UDP_MISS/000 0 HTCP_TST http://www.msftncsi.com/ncsi.txt - HIER_NONE/- -
