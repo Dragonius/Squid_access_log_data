@@ -25,6 +25,7 @@ my $negative=0;
 my $tcp=0;
 my $udp=0;
 
+
 #Cut parsers
 my @F;
 my $F;
@@ -96,6 +97,7 @@ while (<>) {
 #if log files empty then tcp and udp is 1
         if ($tcp == 0) { $tcp=1};
         if ($udp == 0) { $udp=1};
+        if ($N == 0) { $N=1};
         printf "ALL-REQUESTS %d\n", $N;
         printf "TCP-REQUESTS %d\n", $tcp;
         printf "UDP-REQUESTS %d\n", $udp;
@@ -135,4 +137,4 @@ while (<>) {
         printf "OTHER %d\n", $other;
         printf "ALL_TCP %f\n", ($local_hit+$local_miss+$ims_hit+$mem_hit+$unmodified+$modified+$negative+$aborted_hit+$direct+$other+$sibling_hit)/$N*100;
         printf "ALL_UDP %f\n", ($udp_hit/$udp+$udp_miss/$udp)*100;
-        printf "Version 0.121 14.12.2016\n";
+        printf "Version 0.122 3.2.2022\n";
