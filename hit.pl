@@ -80,10 +80,10 @@ while (<>) {
                         $modified++;
                 } elsif ($L =~ /NEGATIVE_HIT/) {
                         $negative++;
-                } elsif ($H =~ /HIT/) {
-                        $sibling_hit++;
                 } elsif ($L =~ /SIBLING_HIT/) {
                         $local_hit++;
+                } elsif ($H =~ /HIT/) {
+                        $sibling_hit++;
                 } elsif ($H =~ /HIER_DIRECT/) {
                         $direct++;
                 } elsif ($L =~ /MISS/) {
